@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Participations</title>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #f4f4f4; }
+    .sidebar { width: 250px; height: 100vh; background: #1e1e2f; color: #fff; position: fixed; left: 0; top: 0; padding-top: 20px; }
+    .sidebar h2 { text-align: center; margin-bottom: 30px; }
+    .sidebar a { display: block; padding: 15px; color: #fff; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .sidebar a:hover { background: #35354a; }
+    .main-content { margin-left: 250px; padding: 20px; }
+    .topbar { background: #fff; padding: 15px; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+    th { background: #1e1e2f; color: #fff; }
+  </style>
+</head>
+<body>
+
+<div class="sidebar">
+  <h2>Student</h2>
+  <a href="/">Logout</a>
+  <a href="/StudentDashboard">Dashboard</a>
+  <a href="/my-events">My Participations</a>
+</div>
+
+<div class="main-content">
+  <div class="topbar">
+    <h2>My Participated Events</h2>
+  </div>
+
+  <table>
+    <tr>
+      <th>Event Title</th>
+      <th>Society</th>
+      <th>Date</th>
+    </tr>
+    <% participatedEvents.forEach(event => { %>
+   <tr>
+  <td><%= event.title %></td>
+  <td><%= event.createdBy ? event.createdBy.name : 'Unknown' %></td>
+  <td><%= event.createdAt.toDateString() %></td>
+</tr>
+    <% }) %>
+  </table>
+</div>
+
+</body>
+</html>

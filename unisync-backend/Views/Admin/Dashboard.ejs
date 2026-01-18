@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+    }
+
+    .sidebar {
+      width: 250px;
+      height: 100vh;
+      background: #1e1e2f;
+      color: #fff;
+      position: fixed;
+      left: 0;
+      top: 0;
+      padding-top: 20px;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 15px;
+      color: #fff;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .sidebar a:hover {
+      background: #35354a;
+    }
+
+    .main-content {
+      margin-left: 250px;
+      padding: 20px;
+    }
+
+    .topbar {
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background: #1e1e2f;
+      color: #fff;
+    }
+
+    .btn {
+      padding: 7px 15px;
+      background: #1e1e2f;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    a{
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .btn:hover {
+      background: #35354a;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="sidebar">
+  <h2>Admin</h2>
+  <a href="/">Logout</a>
+</div>
+
+<div class="main-content">
+
+  <div class="topbar">
+    <h2>Dashboard Overview</h2>
+  </div>
+
+  <div class="card-container">
+    <div class="card">
+      <h3>Total Students</h3>
+      <p><%= st_length%></p>
+    </div>
+    <div class="card">
+      <h3>Total Societies</h3>
+      <p><%= soci_length%></p>
+    </div>
+ 
+  </div>
+
+  <h2 id="students">Manage Students <span>
+<a href="/addstudent" class="btn">Add Student</a>
+  </span></h2>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+
+<%stu_info.forEach(function(value ,index){%>
+
+<tr>
+      <td><%=value.name%></td>
+      <td><%=value.userID.email%></td>
+      <td>    <a href="/editstudent/<%=value.userID.id%>" class="btn">Edit</a>
+              <a href="/delstudent/<%=value.userID.id%>" class="btn">Delete</a></td>
+    </tr>
+
+
+<% })%>
+
+
+    
+  </table>
+
+  <h2 id="societies">Manage Societies  <span>
+<a href="/addsociety" class="btn">Add Society</a>
+
+
+  </span></h2>
+  <table>
+    <tr>
+      <th>Society Name</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+<%society_info.forEach(function(value ,index){%>
+
+<tr>
+      <td><%=value.name%></td>
+      <td><%=value.userID.email%></td>
+      <td>    <a href="/editsociety/<%=value.userID.id%>" class="btn">Edit</a>
+              <a href="/delsociety/<%=value.userID.id%>" class="btn">Delete</a></td>
+    </tr>
+
+
+<% })%>
+
+  </table>
+
+ 
+  
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Society Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      width: 250px;
+      height: 100vh;
+      background: #1e1e2f;
+      color: #fff;
+      position: fixed;
+      left: 0;
+      top: 0;
+      padding-top: 20px;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 15px;
+      color: #fff;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .sidebar a:hover {
+      background: #35354a;
+    }
+
+    /* MAIN CONTENT */
+    .main-content {
+      margin-left: 250px;
+      padding: 20px;
+    }
+
+    .topbar {
+      background: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .top-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+ 
+  .event-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    align-items: stretch;
+  }
+
+  .event-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.2s;
+    height: 100%;
+  }
+
+  .event-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .event-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover; /* Make all images same size without distortion */
+  }
+
+  .event-card .content {
+    padding: 15px;
+    flex: 1; /* Take up remaining space */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .event-card h3 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    line-height: 1.2;
+    color: #1e1e2f;
+  }
+
+  .event-card p {
+    font-size: 14px;
+    color: #555;
+    flex: 1; /* make description take space */
+    margin-bottom: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .event-actions {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .event-actions a {
+    flex: 1;
+    text-align: center;
+    margin: 3px;
+    text-decoration: none;
+    font-size: 14px;
+    background: #1e1e2f;
+    color: #fff;
+    padding: 6px 0;
+    border-radius: 5px;
+    transition: 0.2s;
+  }
+
+  .event-actions a:hover {
+    background: #35354a;
+  }
+
+  @media (max-width: 500px) {
+    .event-actions a {
+      flex: 100%;
+      margin-bottom: 5px;
+    }
+  }
+
+
+    /* BUTTON */
+    .button {
+      text-decoration: none;
+      font-size: 14px;
+      background: #1e1e2f;
+      color: #fff;
+      padding: 7px 15px;
+      border-radius: 5px;
+      transition: 0.2s;
+    }
+
+    .button:hover {
+      background: #35354a;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <h2>Society</h2>
+    <a href="/">Logout</a>
+    <a href="/SocietyDashboard">Dashboard</a>
+    <a href="/add-event">Add Event</a>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main-content">
+
+    <div class="topbar">
+      <h2>Welcome, <%= society.name %></h2>
+    </div>
+
+ <div class="event-container">
+  <% events.forEach(event => { %>
+    <div class="event-card">
+      <img src="/uploads/<%= event.poster %>" alt="Event Poster">
+      <div class="content">
+        <h3><%= event.title %></h3>
+        <p><%= event.description %></p>
+        <div class="event-actions">
+          <a href="/edit-event/<%= event._id %>">Edit</a>
+          <a href="/delete-event/<%= event._id %>">Delete</a>
+          <a href="/participants/<%= event._id %>">Participants</a>
+        </div>
+      </div>
+    </div>
+  <% }) %>
+</div>
+
+
+  </div>
+
+</body>
+</html>

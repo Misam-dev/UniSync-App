@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Event Participants</title>
+  <link rel="stylesheet" href="../../society.css">
+</head>
+
+<body>
+
+<header>Participants for <%= event.title %></header>
+
+<div class="container">
+
+  <table>
+    <thead>
+      <tr>
+        <th>Student Name</th>
+        <th>Email</th>
+        <th>Roll No</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% event.participants.forEach(s => { %>
+      <tr>
+        <td><%= s.name %></td>
+        <td><%= s.userID.email %></td>
+        <td><%= s.rollno %></td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+</div>
+
+</body>
+</html>

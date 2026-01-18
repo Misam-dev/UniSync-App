@@ -1,0 +1,33 @@
+{
+  "name": "navttc-project-mobile-vercel",
+  "version": "2.0.0",
+  "main": "api/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "vercel-build": "echo Build complete"
+  },
+  "keywords": ["unisync", "events", "mobile", "vercel"],
+  "author": "",
+  "license": "ISC",
+  "description": "UniSync Backend - Web + Mobile Support (Vercel Deployment)",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "connect-flash": "^0.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "mongoose": "^9.0.0",
+    "multer": "^2.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  },
+  "engines": {
+    "node": ">=18.x"
+  }
+}
